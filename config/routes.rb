@@ -1,10 +1,11 @@
 RottenMangoes::Application.routes.draw do
-  get "reviews/new"
-  get "reviews/create"
-  get "sessions/new"
-  get "sessions/create"
-  get "users/new"
-  get "users/create"
+  # get "reviews/new"
+  # get "reviews/create"
+  # get "sessions/new"
+  # get "sessions/create"
+  # get "users/new"
+  # get "users/create"
+  
   # get "movies/index"
   # get "movies/show"
   # get "movies/new"
