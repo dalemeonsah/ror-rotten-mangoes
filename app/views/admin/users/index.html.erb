@@ -1,6 +1,7 @@
 <h2>Admins/users</h2>
 <%= link_to "Back to all movies", movies_path %><br/>
 
+<%= paginate @users %>
 
 <% @users.each do |user| %>
    <h3><%= user.full_name %></h3>
