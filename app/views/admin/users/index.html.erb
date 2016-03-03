@@ -3,12 +3,13 @@
 <%= link_to "Create new User", new_admin_user_path %>
 <hr/>
 <% @users.each do |user| %>
-   <h3><%= user.full_name %></h3>
+   <h3>Full Name: <%= user.full_name %></h3>
    <h3><%= user.email %></h3>
    <h3><%= user.created_at %></h3>
    <h3><%= user.admin? ? "Admin" : "Regular" %></h3>
    <h4><%= link_to "Edit user",  edit_admin_user_path(user)%></h4>
    <h4><%= link_to "Delete User", admin_user_path(user), method: :delete, data: {confirm: "Delete user?"} %></h4>
+   <h4><%= link_to "Preview User", new_admin_user_previewuser_path(user) %></h4>
    <hr/>
 <% end %>
 <%= paginate @users %>
