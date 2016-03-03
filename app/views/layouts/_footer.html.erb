@@ -11,4 +11,9 @@
       <%= link_to "Admin User Management", admin_users_path %>
     <% end %>
   </small>
+  <small>
+    <% if previewing? %>
+      <%= link_to "Stop Previewing", admin_user_previewuser_path(:admin, "current"), method: :delete  %>
+    <% end %>
+  </small>
 </footer>
