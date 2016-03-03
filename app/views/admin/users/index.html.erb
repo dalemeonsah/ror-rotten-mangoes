@@ -1,0 +1,10 @@
+<h2>Admins/users</h2>
+<%= link_to "Back to all movies", movies_path %><br/>
+
+
+<% @users.each do |user| %>
+   <h3><%= user.full_name %></h3>
+   <h3><%= user.email %></h3>
+   <h3><%= user.created_at %></h3>
+   </br>
+<% end %>

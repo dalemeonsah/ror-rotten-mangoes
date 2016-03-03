@@ -24,7 +24,7 @@ class Movie < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def review_average
-    reviews.sum(:rating_out_of_ten)/reviews.size if reviews.size > 0
+    reviews.size == 0 ? @errors = "unavailable" : reviews.sum(:rating_out_of_ten)/reviews.size
   end
 
   protected
