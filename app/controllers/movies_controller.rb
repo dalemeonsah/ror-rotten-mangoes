@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
       case runtime
       when "Under 90 minutes"
         @movies << Movie.where("runtime_in_minutes < ?", 90) 
-      when "Betwenn 90 and 120 minutes"
+      when "Between 90 and 120 minutes"
         @movies << Movie.where("runtime_in_minutes BETWEEN ? AND ?", 90, 120) 
       when "Over 120 minutes"
         @movies << Movie.where("runtime_in_minutes > ?", 120) 
