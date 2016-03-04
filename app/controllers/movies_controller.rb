@@ -1,6 +1,27 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+
+    # Enhancement 5: search
+    title = params[:title] unless params[:title] == ""
+    director = params[:director] unless params[:director] == ""
+    runtime = params[:runtime] unless params[:runtime] == ""
+
+    if title || director || runtime
+      @movies = []
+      @movies << Movie.where("title like ?", "%#{title}%") if title
+      @movies << Movie.where("director like ?", "%#{director}%") if director
+      case runtime
+      when "Under 90 minutes"
+        @movies << Movie.where("runtime_in_minutes < ?", 90) 
+      when "Betwenn 90 and 120 minutes"
+        @movies << Movie.where("runtime_in_minutes BETWEEN ? AND ?", 90, 120) 
+      when "Over 120 minutes"
+        @movies << Movie.where("runtime_in_minutes > ?", 120) 
+      end
+      @movies.flatten!
+    else # show all movie if no input to the search
+      @movies = Movie.all
+    end
   end
 
   def show
