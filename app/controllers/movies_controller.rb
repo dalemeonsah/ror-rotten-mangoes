@@ -8,16 +8,9 @@ class MoviesController < ApplicationController
 
     if title || director || runtime
       @movies = []
-      @movies << Movie.where("title like ?", "%#{title}%") if title
-      @movies << Movie.where("director like ?", "%#{director}%") if director
-      case runtime
-      when "Under 90 minutes"
-        @movies << Movie.where("runtime_in_minutes < ?", 90) 
-      when "Between 90 and 120 minutes"
-        @movies << Movie.where("runtime_in_minutes BETWEEN ? AND ?", 90, 120) 
-      when "Over 120 minutes"
-        @movies << Movie.where("runtime_in_minutes > ?", 120) 
-      end
+      @movies << Movie.search_title(title) if title
+      @movies << Movie.search_director(director) if director
+      @movies << Movie.search_runtime(runtime) if runtime
       @movies.flatten!
     else # show all movie if no input to the search
       @movies = Movie.all
