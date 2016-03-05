@@ -29,7 +29,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     send_user_email = @user
     @user.destroy
-    UserMailer.delete_user(send_user_email).deliver
+    UserMailer.delete_user(send_user_email).deliver_now
     redirect_to admin_users_path
   end
   
