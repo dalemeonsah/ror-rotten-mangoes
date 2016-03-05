@@ -1,17 +1,12 @@
 class MoviesController < ApplicationController
   def index
 
-    # Enhancement 5: search
-    title = params[:title] unless params[:title] == ""
-    director = params[:director] unless params[:director] == ""
+    title = params[:search] unless params[:search] == ""
+    director = params[:search] unless params[:search] == ""
     runtime = params[:runtime] unless params[:runtime] == ""
 
     if title || director || runtime
-      @movies = []
-      @movies << Movie.search_title(title) if title
-      @movies << Movie.search_director(director) if director
-      @movies << Movie.search_runtime(runtime) if runtime
-      @movies.flatten!
+      @movies = Movie.search_title(title).search_director(director).search_runtime(runtime)
     else # show all movie if no input to the search
       @movies = Movie.all
     end
